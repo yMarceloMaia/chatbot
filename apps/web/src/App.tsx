@@ -43,7 +43,7 @@ function App() {
     <div className='flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10"'>
       <div className="flex flex-col flex-grow w-full max-w-[1200px] h-3/4 bg-white shadow-xl rounded-lg overflow-hidden">
 
-        <div className="flex flex-col w-full flex-grow h-0 p-4 overflow-auto">
+        <div className="flex flex-col w-full flex-grow h-0 p-4 overflow-auto scroll-behavior-smooth">
 
           {messages.map((message: any, index: any) => (
             <ChatMessage key={index} message={message.message} type={message.type} date={message.date} />

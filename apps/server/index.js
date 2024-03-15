@@ -13,7 +13,7 @@ const model = new LlamaModel({
     modelPath: path.join(__dirname, "models", "notus-7b-v1.Q4_K_M.gguf")
 });
 const context = new LlamaContext({ model });
-const session = new LlamaChatSession({ context });
+let session = new LlamaChatSession({ context });
 
 const app = express()
 
@@ -45,3 +45,14 @@ const PORT = +process.env.PORT || 3003
 server.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`)
 })
+
+
+function activateBIContext(query) {
+    const biKeywords = ["sales", "revenue", "customers", "market"];
+    for (const keyword of biKeywords) {
+        if (query.toLowerCase().includes(keyword)) {
+            return true;
+        }
+    }
+    return false;
+}
