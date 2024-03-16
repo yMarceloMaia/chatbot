@@ -10,7 +10,6 @@ export function getHealthServer(req, res) {
 }
 
 export async function promptChat(req, res) {
-    console.log(req.body)
     try {
         if (!req.body || !req.body.message) throw new Error("body is missing")
         const { message } = req.body

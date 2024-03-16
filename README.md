@@ -44,7 +44,9 @@ npm install
     - link: https://huggingface.co/TheBloke/notus-7B-v1-GGUF
     - depois mova o modelo baixado para pasta "models" dentro do diretório "./apps/server/models"
 
-5. Execute o monorepo a partir da pasta raiz do projeto
+5. Configure o arquivo .env dentro do diretório "./apps/server", precisa apenas renomeiar o arquivo .env.example existente para apenas .env
+
+6. Execute o monorepo a partir da pasta raiz do projeto
 
 ```
 npm run dev
