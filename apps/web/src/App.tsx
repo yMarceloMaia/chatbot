@@ -1,41 +1,44 @@
-
-import { useEffect, useState } from 'react'
-import { io } from 'socket.io-client'
+import { useState } from 'react'
 import ChatMessage from './ChatMessage'
 
 function App() {
-  const [socket, setSocket] = useState<any>(null)
   const [inputMessage, setInputMessage] = useState<string>('')
   const [messages, setMessages] = useState<any>([])
-
-  console.log(messages)
-
-  useEffect(() => {
-    const newSocket: any = io("http://localhost:3003/")
-    setSocket(newSocket)
-
-
-    newSocket.on('response', (message: any) => {
-      console.log(message)
-      setMessages((prev: any) => [...prev, { type: 'receive', message, date: new Date() }])
-    })
-
-    return () => {
-      newSocket.close()
-    }
-  }, [])
 
   const sendMessage = () => {
     setMessages([
       ...messages,
       {
-        type: 'send',
-        message: inputMessage,
+        role: 'user',
+        content: inputMessage,
         date: new Date()
       }
     ])
 
-    socket.emit("message", inputMessage)
+    fetch('http://localhost:3003/v1/chat/completion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: inputMessage
+      })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao executar a requisição');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setMessages((prev: any) => [
+          ...prev,
+          { ...data.messages, date: new Date() }
+        ])
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+      });
     setInputMessage('')
   }
 
@@ -46,7 +49,7 @@ function App() {
         <div className="flex flex-col w-full flex-grow h-0 p-4 overflow-auto scroll-behavior-smooth">
 
           {messages.map((message: any, index: any) => (
-            <ChatMessage key={index} message={message.message} type={message.type} date={message.date} />
+            <ChatMessage key={index} message={message} />
           ))}
 
         </div>

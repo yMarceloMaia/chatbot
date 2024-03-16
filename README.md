@@ -1,10 +1,10 @@
-## Teste de Programação Desenvolvedor Facilita Jurídico
+## ChatBot com Llama 2
 
 #### Monorepo com TurboRepo: Backend em Node.js, Frontend em React
 
 ### Descrição:
 
-Este projeto é um monorepo que utiliza TurboRepo para gerenciar múltiplos pacotes, incluindo o backend em Node.js com TypeScript e o frontend em React com TypeScript.
+Este projeto é um monorepo que simula um chatbot utilizando o modelo Llama 2
 
 ### Tecnologias utilizadas
 
@@ -12,10 +12,6 @@ Este projeto é um monorepo que utiliza TurboRepo para gerenciar múltiplos paco
     - v1.12.5
 - **Node.js:** Backend
     - v21.6.2
-- **TypeScript:** Linguagem de programação
-    - v5.4.2
-- **PostgreSQL:** Banco de dados relacional
-    - v16.1
 - **Vite:** Build tool para o frontend
     - v5.1.6
 - **React:** Biblioteca para construção de interfaces de usuário
@@ -28,13 +24,13 @@ Este projeto é um monorepo que utiliza TurboRepo para gerenciar múltiplos paco
 1. Clone este repositório
 
 ```
-git clone https://github.com/yMarceloMaia/case-facilita.git
+git clone https://github.com/yMarceloMaia/chatbot.git
 ```
 
 2. Navegue para o diretório do projeto
 
 ```
-cd case-facilita
+cd chatbot
 ```
 
 3. Instale as dependências
@@ -43,15 +39,10 @@ cd case-facilita
 npm install
 ```
 
-4. Configure as variáveis de ambiente com as informações do seu banco de dados postgresql, um exemplo do arquivo .env está no diretório ./case-facilita/apps/server/.env.example, renomeie este arquivo para '.env' e coloque as informações de suas variáveis
+4. Baixe o modelo do Llama 2
 
-```
-DB_USER=
-DB_HOST=
-DB_DATABASE=
-DB_PASSWORD=
-DB_PORT=
-```
+    - link: https://huggingface.co/TheBloke/notus-7B-v1-GGUF
+    - depois mova o modelo baixado para pasta "models" dentro do diretório "./apps/server/models"
 
 5. Execute o monorepo a partir da pasta raiz do projeto
 
@@ -61,7 +52,7 @@ npm run dev
 
 ### Documentação da API
 
-https://documenter.getpostman.com/view/18384135/2sA2xk1BzN
+Com o projeto rodando é preciso acessar o seguitne link: http://localhost:3003/api-docs/
 
 ### Contribuindo
 
